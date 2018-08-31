@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String URL_DATA = "https://simplifiedcoding.net/demos/marvel/";
+    private static final String URL_DATA = "http://192.168.0.104/android%20api/api.php";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
@@ -58,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
                             for(int i = 0 ; i < array.length(); i++){
                                 JSONObject o = array.getJSONObject(i);
-                                ListItem item = new ListItem(
-                                        o.getString("name"),
-                                        o.getString("realname"),
-                                        o.getString("imageurl")
-                                );
+
+                                int id = o.getInt("id");
+                                String name = o.getString("name");
+                                String desc = o.getString("description");
+                                String image = o.getString("imageurl");
+
+                                ListItem item = new ListItem( name, desc, image );
                                 listItems.add(item);
                             }
                             adapter = new MyAdapter(listItems,getApplicationContext());

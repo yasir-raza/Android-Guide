@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,6 +40,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.mHeading.setText(listItem.getmHeading());
         holder.mDesc.setText(listItem.getmDesc());
 
+        Picasso.get()
+                .load(listItem.getImageUrl())
+                .into(holder.imageView);
+
+
     }
 
     @Override
@@ -48,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public TextView mHeading;
         public TextView mDesc;
+        public ImageView imageView;
 
 
         public ViewHolder(View itemView) {
@@ -55,6 +64,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
             mHeading = itemView.findViewById(R.id.textHeading);
             mDesc = itemView.findViewById(R.id.textDesc);
+            imageView = itemView.findViewById(R.id.imageView);
+
         }
     }
 }
